@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Application</title>
+    <style>
+        *{
+            font-size: 40px;
+        }
+        body {
+            background-color: lightblue;
+        }
+        .btn {
+            width: 20%;
+            border: 1px solid black;
+            border-radius: 10px;
+            transform: scale(0.8);
+        }
+        .btn:hover{
+            transform: scale(1);
+        }
+
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Birthday Application</h1>
+        <form onsubmit="operations()">
+            <input type="submit"value="Add" class="btn">
+            <input type="submit"value="Remove" class="btn">
+            <input type="submit"value="Show" class="btn">
+        </form>
+        <h2 id="msg"></h2>
+    </center>
+
+    <script>
+        let names=["Wasim","Nazim"];
+        function operations()
+        {
+            event.preventDefault();
+            let msg=document.getElementById("msg");
+            let ele=document.activeElement.value;
+
+            if(ele=="Add")
+            {
+                let n=prompt("Enter Name : ");
+                if(n!="" || n.trim()!=""){
+                    names.push(n);
+                    msg.innerHTML=names;
+                }
+            }
+            else if(ele=="Remove")
+            {
+                msg.innerHTML=names;
+                let n=prompt("Enter Name To be Removed From List");
+                if(n!="" || n.trim()!="")
+                {
+                    let pos=names.indexOf(n);
+                    if(pos==-1)
+                    {
+                        alert(n+" Not Found");
+                    }
+                    else {
+                        names.splice(pos,1);
+                        alert(n+"Removed From List");
+                    }
+                }
+                msg.innerHTML=names;
+            }
+            else if(ele=="Show") {
+                names.sort();
+                msg.innerHTML=names;
+            }
+        }
+    </script>
+</body>
+</html>
